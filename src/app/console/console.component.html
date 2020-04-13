@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="console-frame">
+      <button (click)="changeConsoleState()">Show console</button>
+      <div class="console-area" *ngIf="isConsoleShowed">
+          <div class="prompt" *ngFor="let row of history; let i = index;">
+            <div class="prompt-left">
+              <p class="text-system">{{row.signature}}</p>
+            </div>
+            <div class="prompt-right">
+              <textarea type="text" spellcheck="false" class="console-input text-user" 
+                      #consoleInput
+                      (keydown.enter)="specialKeyCheck(i)" 
+                      [(ngModel)]="row.input"
+                      [disabled]="row.disabled">
+                      {{consoleInput.focus()}}
+              </textarea> 
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
