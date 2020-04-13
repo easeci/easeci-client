@@ -3,18 +3,24 @@
       <button (click)="changeConsoleState()">Show console</button>
       <div class="console-area" *ngIf="isConsoleShowed">
           <div class="prompt" *ngFor="let row of history; let i = index;">
-            <div class="prompt-left">
-              <p class="text-system">{{row.signature}}</p>
-            </div>
-            <div class="prompt-right">
-              <textarea type="text" spellcheck="false" class="console-input text-user" 
-                      #consoleInput
-                      (keydown.enter)="specialKeyCheck(i)" 
-                      [(ngModel)]="row.input"
-                      [disabled]="row.disabled">
-                      {{consoleInput.focus()}}
-              </textarea> 
-            </div>
+            <ng-container *ngIf="displayRowMode(row.type) == 0">
+              <div class="prompt-left">
+                <p class="text-system">{{row.signature}}</p>
+              </div>
+              <div class="prompt-right" #promptRight>
+                <textarea type="text" spellcheck="false" class="console-input text-user" 
+                        #consoleInput
+                        (keydown)="autoscale(row.input)"
+                        (keydown.enter)="inputSubmit(i, row.input)" 
+                        [(ngModel)]="row.input"
+                        [disabled]="row.disabled">
+                        {{consoleInput.focus()}}
+                </textarea>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="displayRowMode(row.type) == 1">
+              <p class="text-system-output">{{row.input}}</p>
+            </ng-container>
           </div>
       </div>
     </div>
