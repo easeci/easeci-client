@@ -14,7 +14,8 @@ export class ConsoleComponent implements OnInit {
   isConsoleShowed = true;
   prompt = 'easeci@127.0.0.1:/$';
   history: ConsoleRow[] = [];
-  maxLineDisplaySize: number = 5;
+  maxLineDisplaySize: number = 12;
+  menuShow = true;
 
   @ViewChild('consoleInput', undefined) consoleInput: ElementRef<HTMLElement>;
 
@@ -30,6 +31,11 @@ export class ConsoleComponent implements OnInit {
     this.isConsoleShowed = !this.isConsoleShowed;
   }
 
+  changeMenuState() {
+    this.menuShow = !this.menuShow;
+  }
+
+  // TODO to refactor
   inputSubmit(index: number, input: string) {
     this.history[index].disabled = true;
 
@@ -39,6 +45,10 @@ export class ConsoleComponent implements OnInit {
 
     var consoleRow = this.emptyInteract();
     this.history.push(consoleRow);
+
+    if (input == 'gui menu') {
+      
+    }
 
     var command = this.commandsContext.getCommand(input);
     if (command != undefined) {
@@ -72,7 +82,7 @@ export class ConsoleComponent implements OnInit {
   private introduceMessage(): ConsoleRow {
     return new ConsoleRow(
       this.prompt, 
-      'Welcome in EaseCI Client terminal, type `help` to display informationa about console features and commands', 
+      'Welcome in EaseCI Client terminal, type `help` to display information about console features and commands', 
       true, 
       ConsoleRowType.SYSTEM_OUTPUT
     );

@@ -1,6 +1,24 @@
 <div class="container">
     <div class="console-frame">
-      <button (click)="changeConsoleState()">Show console</button>
+      <div class="console-menu">
+        <button (click)="changeConsoleState()" class="button-show">Show console</button>
+        <button (click)="changeMenuState()" class="button-show">Show menu</button>
+        <div class="console-menu-bar" *ngIf="menuShow">
+          <div class="button-ico">
+            <!-- dynamically set class depends on server task state -->
+            <img src="assets/images/icons/labour.png" class="vert-move">
+          </div>
+          <div class="button-ico">
+            <img src="assets/images/icons/cloud-search.png">
+          </div>
+          <div class="button-ico">
+            <img src="assets/images/icons/settings.png">
+          </div>
+          <div class="button-ico">
+            <img src="assets/images/icons/close.png">
+          </div>
+        </div>
+      </div>
       <div class="console-area" *ngIf="isConsoleShowed">
           <div class="prompt" *ngFor="let row of history; let i = index;">
             <ng-container *ngIf="displayRowMode(row.type) == 0">
