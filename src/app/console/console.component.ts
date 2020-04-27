@@ -11,7 +11,7 @@ export class ConsoleComponent implements OnInit {
 
   commandsContext = new CommandsContext();
 
-  isConsoleShowed = true;
+  isConsoleShowed = false;
   prompt = 'easeci@127.0.0.1:/$';
   history: ConsoleRow[] = [];
   maxLineDisplaySize: number = 12;
