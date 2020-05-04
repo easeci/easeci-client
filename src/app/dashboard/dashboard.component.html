@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="menu-bar">
+        <div class="centered-bar">
+            <a><img src="assets/images/logo/easeci-log.png" class="easeci-icon"></a>
+            <a>First</a>
+            <a>Second</a>
+            <a>Third</a>
+            <a>Forth</a>
+            <a (click)="showConsole()">Console</a>
+            <a><img src="assets/images/icons/search.png"></a>
+        </div>
+    </div>
+</div>
+
+<div class="console-display" *ngIf="consoleDisplay">
+    <app-console></app-console>
+</div>
